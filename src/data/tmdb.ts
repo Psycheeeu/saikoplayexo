@@ -690,9 +690,9 @@ export const ROWS: RowDef[] = [
     },
   },
   {
-    id: "home-acclaimed",
-    title: "Critically Acclaimed",
-    loader: () => fetchTopRated("movie"),
+    id: "home-asian-dramas",
+    title: "Asian Dramas",
+    loader: () => fetchByProvider(158, 1, "ph"),
   },
   {
     id: "home-browse-genre",
