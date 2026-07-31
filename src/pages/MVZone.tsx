@@ -14,10 +14,10 @@ import MVPlayerModal from "../components/MVPlayerModal";
 const PER_PAGE = 25; // 5 columns × 5 rows
 
 const HERO_BG =
-  "https://static.wikia.nocookie.net/kpop/images/e/e7/Xikers_Route_Zero_-_The_Ora_group_concept_photo_5.png/revision/latest/scale-to-width-down/1000?cb=20260506233059";
-const HERO_LOGO = "https://res.cloudinary.com/veeps/image/upload/t_card_hero_logo/v1688658325/assets/qbyifxoaqtyxgv51nn6u.png";
+  "https://static.wikia.nocookie.net/kpop/images/e/e3/MEOVV_Bite_Now_group_concept_photo_1.png/revision/latest/scale-to-width-down/1000?cb=20260514163652";
+const HERO_LOGO = "https://i.imgur.com/zUjrJHo.png";
 const HERO_DESC =
-  'xikers (싸이커스) is a South Korean boy group under KQ Entertainment. The group consists of ten members: Minjae, Junmin, Sumin, Jinsik, Hyunwoo, Junghoon, Seeun, Yujun, Hunter, and Yechan. They debuted on March 30, 2023, with the extended play House of Tricky: Doorbell Ringing.';
+  'MEOVV is a South Korean girl group formed and managed by THEBLACKLABEL. The group consists of five members: Sooin, Gawon, Anna, Narin, and Ella. They debuted on September 6, 2024, with the release of their digital single "MEOW".';
 
 // Cap text at N whole sentences — never cut mid-sentence; ellipsize after the last one kept
 function truncateSentences(text: string, maxSentences: number): string {
@@ -126,11 +126,11 @@ export default function MVZone({ searchQuery }: Props) {
               <span className="bg-accent/10 text-accent px-2 py-0.5 rounded-full text-[11px] font-semibold">
                 K-Pop
               </span>
-              <span>2023</span>
+              <span>2024</span>
               <span className="text-text-muted">·</span>
-              <span>10 Members</span>
+              <span>5 Members</span>
               <span className="text-text-muted">·</span>
-              <span>KQ ENT</span>
+              <span>THEBLACKLABEL</span>
             </div>
 
             {/* Description — max 5 sentences, sentence-safe truncation */}
