@@ -227,7 +227,7 @@ function App() {
         rowById("home-top-rated", "Top Rated"),
         rowById("home-kids", "For Kids"),
         rowById("home-anime", "Anime"),
-        rowById("home-acclaimed", "Critically Acclaimed"),
+        rowById("home-asian-dramas", "Asian Dramas"),
         {
           ...rowById("home-browse-genre", "Browse by Genre"),
           filter: {
