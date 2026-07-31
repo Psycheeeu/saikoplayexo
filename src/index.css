@@ -1,0 +1,340 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── SaikoPlay design tokens (dark theme defaults) ─────────────────
+     A quiet, neutral canvas. One restrained accent. Nothing shouts. */
+  --color-bg-primary: #0b0b0d;
+  --color-bg-secondary: #131316;
+  --color-bg-tertiary: #1b1b20;
+
+  --color-accent: #58bb17;
+  --color-accent-hover: #6bcf2a;
+  --color-accent-2: #58bb17;
+
+  --color-text-primary: #f5f5f6;
+  --color-text-secondary: #a4a4ad;
+  --color-text-muted: #6d6d77;
+
+  --color-line: rgba(255, 255, 255, 0.08);
+  --color-line-strong: rgba(255, 255, 255, 0.14);
+
+  /* Subtle contrast fills for controls sitting on plain surfaces */
+  --color-veil: rgba(255, 255, 255, 0.1);
+  --color-veil-strong: rgba(255, 255, 255, 0.15);
+
+  /* Solid primary actions (invert between themes) */
+  --color-solid: #ffffff;
+  --color-solid-text: #0b0b0d;
+
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "DM Sans", "Inter", system-ui, sans-serif;
+
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-lift: 0 12px 32px rgba(0, 0, 0, 0.45);
+  --shadow-modal: 0 24px 80px rgba(0, 0, 0, 0.6);
+  --shadow-nav: 0 12px 32px -16px rgba(0, 0, 0, 0.6);
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Non-token theming variables */
+:root {
+  --scrollbar-thumb: rgba(255, 255, 255, 0.16);
+  --scrollbar-thumb-hover: rgba(255, 255, 255, 0.3);
+  --sk-a: rgba(255, 255, 255, 0.045);
+  --sk-b: rgba(255, 255, 255, 0.09);
+  color-scheme: dark;
+}
+
+/* ── Light theme — soft, warm off-whites, gentle contrast ────────── */
+[data-theme="light"] {
+  --color-bg-primary: #f7f7f4;
+  --color-bg-secondary: #fcfcfa;
+  --color-bg-tertiary: #eeeeeb;
+
+  --color-accent: #499a13;
+  --color-accent-hover: #3d8510;
+  --color-accent-2: #499a13;
+
+  --color-text-primary: #2b2b2e;
+  --color-text-secondary: #5e5e64;
+  --color-text-muted: #9b9ba1;
+
+  --color-line: rgba(28, 28, 26, 0.08);
+  --color-line-strong: rgba(28, 28, 26, 0.14);
+
+  --color-veil: rgba(28, 28, 26, 0.05);
+  --color-veil-strong: rgba(28, 28, 26, 0.09);
+
+  --color-solid: #2e2e32;
+  --color-solid-text: #f8f8f6;
+
+  --shadow-card: 0 1px 2px rgba(28, 28, 26, 0.05);
+  --shadow-lift: 0 10px 28px rgba(28, 28, 26, 0.09);
+  --shadow-modal: 0 20px 64px rgba(28, 28, 26, 0.15);
+  --shadow-nav: 0 12px 32px -18px rgba(28, 28, 26, 0.11);
+
+  --scrollbar-thumb: rgba(28, 28, 26, 0.14);
+  --scrollbar-thumb-hover: rgba(28, 28, 26, 0.26);
+  --sk-a: rgba(28, 28, 26, 0.045);
+  --sk-b: rgba(28, 28, 26, 0.09);
+  color-scheme: light;
+}
+
+/* Player modals keep a dark, cinema-grade chrome in both themes */
+[data-theme="light"] .player-modal-root {
+  --color-bg-primary: #0b0b0d;
+  --color-bg-secondary: #131316;
+  --color-bg-tertiary: #1b1b20;
+  --color-text-primary: #f5f5f6;
+  --color-text-secondary: #a4a4ad;
+  --color-text-muted: #6d6d77;
+  --color-line: rgba(255, 255, 255, 0.08);
+  --color-line-strong: rgba(255, 255, 255, 0.14);
+  --color-veil: rgba(255, 255, 255, 0.1);
+  --color-veil-strong: rgba(255, 255, 255, 0.15);
+  --color-solid: #ffffff;
+  --color-solid-text: #0b0b0d;
+}
+
+html,
+body,
+#root {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  font-feature-settings: "cv05" 1, "ss01" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.011em;
+  text-rendering: optimizeLegibility;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+:root {
+  --focus-ring: rgba(88, 187, 23, 0.65);
+}
+[data-theme="light"] {
+  --focus-ring: rgba(73, 154, 19, 0.55);
+}
+
+::selection {
+  background: rgba(73, 154, 19, 0.28);
+  color: var(--color-text-primary);
+}
+
+/* Numbers in metadata align cleanly */
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Focus ─────────────────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+button:focus:not(:focus-visible),
+a:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Text inputs carry the site's own chrome — no focus ring inside them */
+input:focus-visible,
+textarea:focus-visible {
+  outline: none;
+}
+
+/* ── Scrollbars — quiet, theme-aware ───────────────────────────────── */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 999px;
+  border: 3px solid transparent;
+  background-clip: padding-box;
+  transition: background-color 0.2s ease;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+  border: 3px solid transparent;
+  background-clip: padding-box;
+}
+html {
+  scrollbar-color: var(--scrollbar-thumb) transparent;
+  scrollbar-width: thin;
+}
+
+/* Hide scrollbar (rows) */
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Thin scrollbar inside modal lists */
+.search-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) transparent;
+}
+.search-scroll::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* ── Hero scrims (follow the page background) ──────────────────────── */
+.hero-gradient {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--color-bg-primary) 0%, transparent) 0%,
+    color-mix(in srgb, var(--color-bg-primary) 24%, transparent) 42%,
+    color-mix(in srgb, var(--color-bg-primary) 72%, transparent) 74%,
+    var(--color-bg-primary) 100%
+  );
+}
+
+.hero-side-gradient {
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--color-bg-primary) 80%, transparent) 0%,
+    color-mix(in srgb, var(--color-bg-primary) 25%, transparent) 55%,
+    transparent 100%
+  );
+}
+
+/* Light theme hero — no full-image haze. A localized left gradient behind
+   the text only; the artwork stays vivid across the rest of the banner. */
+[data-theme="light"] .hero-gradient {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.18) 0%,
+    rgba(255, 255, 255, 0.08) 35%,
+    transparent 100%
+  );
+}
+
+[data-theme="light"] .hero-side-gradient {
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--color-bg-primary) 86%, transparent) 0%,
+    color-mix(in srgb, var(--color-bg-primary) 45%, transparent) 34%,
+    transparent 60%
+  );
+}
+
+/* Top scrim behind the floating navigation — extremely subtle in light mode */
+.nav-top-scrim {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, transparent 100%);
+}
+
+[data-theme="light"] .nav-top-scrim {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--color-bg-primary) 65%, transparent) 0%,
+    transparent 100%
+  );
+}
+
+/* Light theme hero typography: warm ink, no heavy shadows or dark styling */
+[data-theme="light"] .hero-text-primary {
+  color: #17171a;
+}
+
+[data-theme="light"] .hero-text-secondary {
+  color: #3f3f44;
+}
+
+[data-theme="light"] .hero-surface {
+  background: rgba(252, 252, 250, 0.82);
+  border-color: rgba(28, 28, 26, 0.08);
+}
+
+/* ── Line clamp utilities ──────────────────────────────────────────── */
+.line-clamp-1,
+.line-clamp-2,
+.line-clamp-3,
+.line-clamp-4 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.line-clamp-1 { -webkit-line-clamp: 1; }
+.line-clamp-2 { -webkit-line-clamp: 2; }
+.line-clamp-3 { -webkit-line-clamp: 3; }
+.line-clamp-4 { -webkit-line-clamp: 4; }
+
+/* ── Motion — small, fast, confident ───────────────────────────────── */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.97) translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.55s var(--ease-out-soft) both;
+}
+.animate-fade-in {
+  animation: fadeIn 0.35s ease-out both;
+}
+.animate-scale-in {
+  animation: scaleIn 0.22s var(--ease-out-soft) both;
+}
+
+/* Skeleton shimmer — a single soft sweep, no color noise */
+.skeleton {
+  background: linear-gradient(100deg, var(--sk-a) 40%, var(--sk-b) 50%, var(--sk-a) 60%);
+  background-size: 200% 100%;
+  animation: shimmer 1.6s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
